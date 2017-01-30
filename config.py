@@ -1,4 +1,4 @@
-CSPF = True
+CSRF = True
 SECRET_KEY = 'NOKEY!'
 
 import os

@@ -5,10 +5,12 @@
 </head>
 <body>
 <form method="POST">
+	{{form.hidden_tag()}}
 	<p>Stuff:{{form.stuff(size = 40)}}</p>
+	<p>Time:{{form.todo_time(size=40)}}</p>
 	<p><input type="submit" name="提交！"></p>
-	<p>Stuffs to be done:</p>
-</form>
+</form>	
+<p>Stuffs to be done:</p>
 {% for stuff in stuffs %}
 <div>{{stuff}}</div>
 {% endfor %}
