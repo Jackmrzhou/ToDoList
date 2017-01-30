@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ToDoList!</title>
+</head>
+<body>
+<form method="POST">
+	<p>Stuff:{{form.stuff(size = 40)}}</p>
+	<p><input type="submit" name="提交！"></p>
+	<p>Stuffs to be done:</p>
+</form>
+{% for stuff in stuffs %}
+<div>{{stuff}}</div>
+{% endfor %}
+</body>
+</html>
