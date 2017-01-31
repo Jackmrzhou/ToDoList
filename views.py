@@ -1,5 +1,5 @@
 import forms
-from flask import Flask,render_template,redirect,flash
+from flask import Flask,render_template,redirect,flash, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -12,10 +12,17 @@ import db_operate
 @app.route('/', methods = ['GET','POST'])
 def ToDo():
 	form = forms.thing()
-	stuffs = db_operate.query()
+	stuffs = db_operate.query_all()
 	if form.validate_on_submit():
-		db_operate.insert(form.stuff.data +':'+ form.todo_time.data)
+		db_operate.insert(form.stuff.data +':\t'+ form.todo_time.data)
 		return redirect('/')
+
+	if request.form:
+		f = request.form
+		for stuff_id in f.keys():
+			db_operate.delete(stuff_id)
+		return redirect('/')
+		
 	return render_template('index.html',
 		form = form,
 		stuffs = stuffs)

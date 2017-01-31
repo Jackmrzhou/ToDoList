@@ -12,7 +12,11 @@
 </form>	
 <p>Stuffs to be done:</p>
 {% for stuff in stuffs %}
-<div>{{stuff}}</div>
+<div>
+	<form method="POST">
+		{{stuff}}<input type="submit" name="{{stuff.id}}" value="删除">
+	</form>
+</div>
 {% endfor %}
 </body>
 </html>
