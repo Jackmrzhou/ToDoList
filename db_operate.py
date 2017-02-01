@@ -3,8 +3,8 @@ import models
 def query_all():
 	return models.todo_stuff.query.all()
 
-def insert(stuff):
-	new_stuff = models.todo_stuff(stuff = stuff)
+def insert(stuff, time):
+	new_stuff = models.todo_stuff(stuff = stuff,time = time)
 	try:
 		models.db.session.add(new_stuff)
 		models.db.session.commit()

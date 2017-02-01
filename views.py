@@ -14,7 +14,7 @@ def ToDo():
 	form = forms.thing()
 	stuffs = db_operate.query_all()
 	if form.validate_on_submit():
-		db_operate.insert(form.stuff.data +':\t'+ form.todo_time.data)
+		db_operate.insert(form.stuff.data , form.time.data)
 		return redirect('/')
 
 	if request.form:
