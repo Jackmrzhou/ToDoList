@@ -5,23 +5,35 @@
 	<title>ToDoList!</title>
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css" >  
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form method="POST">
+<center>
+	{%with messages = get_flashed_messages()%}
+	{%if messages%}
+		{%for message in messages%}
+		<h3>
+			<span class="label label-danger">{{message}}</span>
+		</h3>
+		{% endfor %}
+	{% endif %}
+	{% endwith %}
+</center>
+<form name="GET_STUFF" method="POST">
 	{{form.hidden_tag()}}
 	<center>
 	<div>
-		<h3>Stuff:</h3>
+		<h3>Stuff:(Limited in 20)</h3>
 		{{form.stuff(class="form-control", style="width:50%",placeholder="Stuff")}}
 	</div>
 	<div>
-		<h3>Time:</h3>
+		<h3>Time:(limited in 20)</h3>
 		{{form.time(class="form-control", style="width:50%",placeholder="Time")}}
 	</div>
 	<p><input class="btn btn-success" type="submit" name="提交！"></p>
 	</center>
 </form>	
+<form name = "delete" method="POST">
 <h3>
 	<div class="table-responsive">
 		<table class="table">
@@ -35,16 +47,15 @@
 			</thead>
 			{% for stuff in stuffs %}
 				<tr class="warning">
-					<form method="POST">
 						<td><span class="label label-warning">{{stuff.stuff}}</span></td>
 						<td>{{stuff.time}}</td>
 						<td><input class="btn btn-danger" type="submit" name="{{stuff.id}}" value="删除"></td>
-					</form>
 				</tr>
 			{% endfor %}
 			</tbody>
 		</table>
 	</div>
 </h3>
+</form>
 </body>
 </html>
