@@ -1,11 +1,11 @@
 import models
 
-def query_all():
-	return models.todo_stuff.query.all()
+def query_all(user):
+	return user.todo_stuffs.all()
 
 def query_user(username):
 	user = models.User.query.filter_by(username = username).first()
-	return user.username,user.password
+	return user
 
 def insert(stuff=None, time=None,user=None, username=None, password=None):
 	if stuff and time and user:

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>SignIn!</title>
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css" >  
+	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body background="/static/background_pic/swirl_pattern/swirl_pattern.png">
+<center>
+	<div class="form-signin-heading">
+		<h3>
+			用户与密码长度均为6~20
+		</h3>
+	</div>
+</center>
+<center>
+	{%with messages = get_flashed_messages()%}
+	{%if messages%}
+		{%for message in messages%}
+		<h3>
+			<span class="label label-danger">{{message}}</span>
+		</h3>
+		{% endfor %}
+	{% endif %}
+	{% endwith %}
+	<form method="POST">
+	{{form.hidden_tag()}}
+		<div>
+			<h3>
+				{{form.username(class="form-control", style="width:25%", placeholder="Username")}}
+			</h3>
+		</div>
+		<div>
+			<h3>
+				{{form.password(class="form-control", style = "width:25%", placeholder="Password")}}
+			</h3>
+		</div>
+		<div>
+			<h3>
+				{{form.repeat_password(class="form-control", style = "width:25%",
+				placeholder = "Repeat Password")}}
+			</h3>
+		</div>
+		<p>
+			<input class="btn btn-lg btn-success btn-block" type="submit" name="register" style="width: 25%" value="注册并登录">
+		</p>
+	</form>
+</center>
+</body>
+</html>

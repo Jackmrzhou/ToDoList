@@ -11,3 +11,6 @@ class SigninForm(FlaskForm):
 
 	username = StringField('Username', validators=[Length(min = 6,max = 20)])
 	password = PasswordField('Password', validators=[Length(min= 6, max = 20)])
+
+class RegisterForm(SigninForm):
+	repeat_password = PasswordField('Repeat_Password',validators=[Length(min=6,max=20)])
