@@ -8,17 +8,33 @@
 	<script src="/static/js/bootstrap.min.js"></script>
 </head>
 <body background="/static/background_pic/ignasi_pattern_s/ignasi_pattern_s.png">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+	<div class="navbar-header">
+		<a class="navbar-brand">Hello,{{username}}!</a>
+	</div>
+	<div>
+		<form class="navbar-form navbar-right">
+            <button class="btn btn-warning" onclick=javascript:jump()>
+                登出
+            </button>
+        </form>
+	</div>
+</nav>
+<br>
+<br>
+{%with messages = get_flashed_messages()%}
+{%if messages%}
 <center>
-	{%with messages = get_flashed_messages()%}
-	{%if messages%}
-		{%for message in messages%}
-		<h3>
-			<span class="label label-danger">{{message}}</span>
-		</h3>
-		{% endfor %}
-	{% endif %}
-	{% endwith %}
+	{%for message in messages%}
+	<h3>
+		<span class="label label-danger">{{message}}</span>
+	</h3>
+	{% endfor %}
 </center>
+{% endif %}
+{% endwith %}
+
 <form name="GET_STUFF" method="POST">
 	{{form.hidden_tag()}}
 	<center>
@@ -57,5 +73,10 @@
 	</div>
 </h3>
 </form>
+<script>
+	function jump(){
+		window.location.href = "/logout"
+	}
+</script>
 </body>
 </html>
