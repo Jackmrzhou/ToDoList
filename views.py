@@ -80,20 +80,22 @@ def login():
 	if request.form.get('register'):
 		return redirect('/register')
 
-	if form.validate_on_submit():
-		user = db_operate.query_user(form.username.data)
-		if user:
-			if form.password.data == user.password:
-				session['username'] = form.username.data
-
-				return redirect('/')
+	if form.is_submitted():
+		if form.validate():
+			user = db_operate.query_user(form.username.data)
+			if user:
+				if form.password.data == user.password:
+					session['username'] = form.username.data
+					return redirect('/')
+				else:
+					flash('Password is not correct!')
+					return redirect('/login')
 			else:
-				flash('Password is not correct!')
+				flash('Username not found!')
 				return redirect('/login')
 		else:
-			flash('Username not found!')
+			flash('Username and Password must between 6 and 20!')
 			return redirect('/login')
-	
 	return render_template('login.html',
 		form = form)
 

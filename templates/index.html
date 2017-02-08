@@ -15,9 +15,8 @@
 	</div>
 	<div>
 		<form class="navbar-form navbar-right">
-            <button class="btn btn-warning" onclick=javascript:jump()>
-                登出
-            </button>
+            <input value="登出" type = "button" class="btn btn-warning" onclick=javascript:jump()>
+
         </form>
 	</div>
 </nav>
@@ -64,7 +63,7 @@
 			{% for stuff in stuffs %}
 				<tr class="warning">
 						<td><span class="label label-warning">{{stuff.stuff}}</span></td>
-						<td>{{stuff.time}}</td>
+						<td><span class="label label-primary">{{stuff.time}}</span></td>
 						<td><input class="btn btn-danger" type="submit" name="{{stuff.id}}" value="删除"></td>
 				</tr>
 			{% endfor %}
